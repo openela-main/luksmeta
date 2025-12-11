@@ -1,6 +1,6 @@
 Name:           luksmeta
 Version:        9
-Release:        4%{?dist}
+Release:        4%{?dist}.1
 Summary:        Utility for storing small metadata in the LUKSv1 header
 
 License:        LGPLv2+
@@ -9,10 +9,12 @@ Source0:        https://github.com/latchset/%{name}/releases/download/v%{version
 Patch0:         luksmeta-9-tests.patch
 Patch1:         Relax-content-tests-in-test-suite.patch
 Patch2:         0001-Define-log-callback-function-to-use-with-libcryptset.patch
+Patch3:         0002-Fix-handling-of-large-metadata.patch
 
 BuildRequires:  gcc
 BuildRequires:  asciidoc
 BuildRequires:  pkgconfig
+BuildRequires:  cryptsetup
 BuildRequires:  cryptsetup-devel
 Requires: lib%{name}%{?_isa} = %{version}-%{release}
 
@@ -67,6 +69,10 @@ make %{?_smp_mflags} check
 %{_libdir}/pkgconfig/luksmeta.pc
 
 %changelog
+* Fri Nov 28 2025 Sergio Correia <scorreia@redhat.com> - 9-4.1
+- Fix handling of large metadata
+  Resolves: RHEL-122138
+
 * Sat Nov 30 2019 Sergio Correia <scorreia@redhat.com> - 9-4
 - LUKSMeta now sets error level from libcryptsetup to CRYPT_LOG_ERROR, and
   this output is logged to stderr
