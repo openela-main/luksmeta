@@ -1,15 +1,11 @@
 Name:           luksmeta
-Version:        9
-Release:        12%{?dist}
+Version:        10
+Release:        1%{?dist}
 Summary:        Utility for storing small metadata in the LUKSv1 header
 
 License:        LGPLv2+
 URL:            https://github.com/latchset/%{name}
 Source0:        https://github.com/latchset/%{name}/releases/download/v%{version}/%{name}-%{version}.tar.bz2
-
-Patch01: luksmeta-9-tests.patch
-Patch02: luksmeta-9-relax-layout-assumptions.patch
-Patch03: Define-log-callback-function-to-use-with-libcryptset.patch
 
 BuildRequires:  gcc
 BuildRequires:  asciidoc
@@ -69,6 +65,10 @@ make %{?_smp_mflags} check
 %{_libdir}/pkgconfig/luksmeta.pc
 
 %changelog
+* Wed Nov 26 2025 Sergio Correia <scorreia@redhat.com> - 10-1
+- New upstream release v10
+  Resolves: RHEL-122139
+
 * Mon Aug 09 2021 Mohan Boddu <mboddu@redhat.com> - 9-12
 - Rebuilt for IMA sigs, glibc 2.34, aarch64 flags
   Related: rhbz#1991688
